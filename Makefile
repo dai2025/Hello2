@@ -6,6 +6,6 @@ TARGET=Hello2
 
 # speces -> Tabs 8
 $(TARGET): $(OBJS)
-        $(CC) -o $@ $(OBJS)
+	$(CC) -o $@ $(OBJS)
 clean:
-        rm -f *.o Hello2
+	rm -f *.o Hello2
