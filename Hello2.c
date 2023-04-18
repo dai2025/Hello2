@@ -5,10 +5,42 @@
 // HRESULT hr = StringCbPrintfExW(szBuffer, sizeof(szBuffer), L"", ... 
 // if (SUCCEEDED(hr))
 // wprintf(L"... : %s\n", szBuffer);
+/*
+unsigned int random_number_urandom()
+{
+    unsigned int result;
+    int fd = open("/dev/urandom", O_RDONLY);
+    if (fd == -1)
+    {
+        perror("open failed");
+        exit(EXIT_FAILURE);
+    }
+    if (read(fd, &result, sizeof(result)) != sizeof(result))
+    {
+        perror("read failed");
+        exit(EXIT_FAILURE);
+    }
+    close(fd);
+    return result;
+}
+*/
 #else
 #include <stdio.h>
 //#include <stdlib.h>
 //#include <cxxabi.h>
+
+/*
+unsigned int random_number_rand_s()
+{
+    unsigned int result;
+    if (rand_s(&result) != 0)
+    {
+        perror("rand_s failed");
+        exit(EXIT_FAILURE);
+    }
+    return result;
+}
+*/
 
 #ifndef __cplusplus 
 #define print(x) printf(#x ": %s = %s\n", _Generic((x), \
@@ -40,6 +72,8 @@ static int sub1(void) {
 }
 
 int main(void) {
+	int a = 10;
+int b[a];
 const char* mai="mainn";
 //print2(mai);
 print(mai);
