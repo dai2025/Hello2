@@ -30,6 +30,32 @@ unsigned int random_number_urandom()
 //#include <cxxabi.h>
 
 /*
+#include <pthread.h>
+#include <lowlevellock.h>
+int lock = 0;
+int counter = 0;
+
+void *worker(void *arg) {
+for (int i = 0; i < 1000000; i++) {
+acquire_lock();
+counter++;
+release_lock();
+}
+return NULL;
+}
+
+int pmain() {
+pthread_t t1, t2;
+pthread_create(&t1, NULL, worker, NULL);
+pthread_create(&t2, NULL, worker, NULL);
+pthread_join(t1, NULL);
+pthread_join(t2, NULL);
+printf("Counter: %d\n", counter);
+return 0;
+}
+*/
+
+/*
 unsigned int random_number_rand_s()
 {
     unsigned int result;
