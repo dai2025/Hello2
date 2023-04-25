@@ -6,3 +6,5 @@ In this blog post, I will show you how to write sample code in C language that c
 
 I hope this code helps you understand how to use the Windows API for file operations. If you have any questions or feedback, please leave a comment below. Thank you for reading!
 
+## FindFirstFileSample1.c
+## FindFirstFileSample2.c
