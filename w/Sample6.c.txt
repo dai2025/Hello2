@@ -1,0 +1,48 @@
+#include <Windows.h>
+#include <wincrypt.h>
+#include <stdio.h>
+
+// This blog post will show you how to use the Windows API functions GetFileSize, GetCompressedFileSize and CertCreateCertificateContext to perform some common tasks with files and certificates.
+
+// GetFileSize returns the size of a file in bytes, given a handle to an open file. It takes two parameters: a handle to the file and a pointer to a variable that receives the high-order part of the file size. The function returns the low-order part of the file size. If the function fails, it returns INVALID_FILE_SIZE and sets the last error code. You can use GetLastError to get more information about the error.
+
+// Here is an example of how to use GetFileSize to get the size of a file named "test.txt":
+
+HANDLE hFile = CreateFile("test.txt", GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+if (hFile == INVALID_HANDLE_VALUE) {
+  printf("CreateFile failed with error %d\n", GetLastError());
+  return;
+}
+
+DWORD dwSizeLow = 0;
+DWORD dwSizeHigh = 0;
+dwSizeLow = GetFileSize(hFile, &dwSizeHigh);
+if (dwSizeLow == INVALID_FILE_SIZE) {
+  printf("GetFileSize failed with error %d\n", GetLastError());
+  CloseHandle(hFile);
+  return;
+}
+
+printf("The size of test.txt is %llu bytes\n", ((ULONGLONG)dwSizeHigh << 32) + dwSizeLow);
+
+CloseHandle(hFile);
+
+// GetCompressedFileSize returns the compressed size of a file in bytes, given its name or a handle to an open file. It takes two parameters: the name of the file or a handle to the file and a pointer to a variable that receives the high-order part of the compressed file size. The function returns the low-order part of the compressed file size. If the function fails, it returns INVALID_FILE_SIZE and sets the last error code. You can use GetLastError to get more information about the error.
+
+// Here is an example of how to use GetCompressedFileSize to get the compressed size of a file named "test.zip":
+
+DWORD dwCompSizeLow = 0;
+DWORD dwCompSizeHigh = 0;
+dwCompSizeLow = GetCompressedFileSize("test.zip", &dwCompSizeHigh);
+if (dwCompSizeLow == INVALID_FILE_SIZE) {
+  printf("GetCompressedFileSize failed with error %d\n", GetLastError());
+  return;
+}
+
+printf("The compressed size of test.zip is %llu bytes\n", ((ULONGLONG)dwCompSizeHigh << 32) + dwCompSizeLow);
+
+// CertCreateCertificateContext creates a certificate context from an encoded certificate. A certificate context contains information about a certificate, such as its subject, issuer, validity period, public key and extensions. It takes three parameters: the encoding type of the certificate (such as X509_ASN_ENCODING or PKCS_7_ASN_ENCODING), a pointer to a buffer that contains the encoded certificate and the size of the encoded certificate in bytes. The function returns a pointer to a certificate context or NULL if it fails. You can use GetLastError to get more information about the error.
+
+// Here is an example of how to use CertCreateCertificateContext to create a certificate context from a base64-encoded certificate:
+
+char* pszCert = "MIIDBTCCAe2gAwIBA..."
