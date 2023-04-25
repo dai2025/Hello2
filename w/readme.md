@@ -9,3 +9,4 @@ I hope this code helps you understand how to use the Windows API for file operat
 ## FindFirstFileSample1.c
 ## FindFirstFileSample2.c
 ## Sample5.c
+## CertCreateCertificateContext1.c
