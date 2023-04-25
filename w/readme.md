@@ -3,3 +3,6 @@ In this blog post, I will show you how to write sample code in C language that c
 
 ## CreateFileSample2.c
 In this blog post, I will show you how to write sample code in C language that can append data from one file to another. The code uses the Windows API functions CreateFile, SetFilePointer, LockFile, WriteFile and UnlockFile. Here is the code:
+
+I hope this code helps you understand how to use the Windows API for file operations. If you have any questions or feedback, please leave a comment below. Thank you for reading!
+
