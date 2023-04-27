@@ -1,0 +1,7 @@
+- Turn off command echoing
+- Display the message "set path"
+- Prompt the user to enter a value and store it in the variable "num"
+- Calculate the remainder of dividing "num" by 2 and store it in the variable "mod"
+- If "mod" is equal to 0, display the message "odd"
+- Otherwise, display the message "even"
+- Invoke nmake with the makefile "test.mak"
