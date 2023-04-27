@@ -1,3 +1,4 @@
+!MESSAGE OS=$(OS)
 all: test.exe
 
 test.exe: test.obj
